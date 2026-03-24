@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ailyn Franco</title>
+    <title>Amor Flores</title>
+    <style>
+        body {font-family: Arial, sans-serif;}
+        #flower-container {display: flex; flex-wrap: wrap;}
+        .flower {margin: 10px; font-size: 50px;}
+    </style>
 </head>
 <body>
-    <h1>Flowers</h1>
+    <h1>Amor Flores</h1>
+    <div id="flower-container">
+        <div class="flower">🌼</div>
+        <div class="flower">🌻</div>
+    </div>
     <script>
-        const flowers = ['🌼', '🌻']; // Updated to only yellow flowers
-        console.log(flowers);
+        const flowers = ['🌼', '🌻'];
+        const container = document.getElementById('flower-container');
+
+        flowers.forEach(flower => {
+            const flowerDiv = document.createElement('div');
+            flowerDiv.className = 'flower';
+            flowerDiv.textContent = flower;
+            container.appendChild(flowerDiv);
+        });
     </script>
 </body>
 </html>
