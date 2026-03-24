@@ -1,196 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=360, initial-scale=1.0">
-<title>Amor</title>
-<style>
-body{
-  margin:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  background:linear-gradient(135deg,#ff0f8f,#6b003f);
-  overflow:hidden;
-  font-family:Arial;
-}
-.container{
-  width:360px;
-  height:640px;
-  background:#f7e9df;
-  border-radius:25px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
-}
-/* 💖 nombre animado */
-.name{
-  position:absolute;
-  top:25px;
-  width:100%;
-  text-align:center;
-  font-size:26px;
-  font-weight:bold;
-  color:#ff0f8f;
-  animation:latido 1.2s infinite;
-  text-shadow:0 0 10px rgba(255,0,128,0.7);
-}
-@keyframes latido{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.1);}
-}
-/* 💖 corazones */
-.heart{
-  position:absolute;
-  width:15px;
-  height:15px;
-  background:rgba(255,255,255,0.2);
-  transform:rotate(45deg);
-  animation:float 8s linear infinite;
-}
-.heart::before,.heart::after{
-  content:"";
-  position:absolute;
-  width:15px;
-  height:15px;
-  background:inherit;
-  border-radius:50%;
-}
-.heart::before{left:-7px;}
-.heart::after{top:-7px;}
-@keyframes float{
-  from{transform:translateY(100%) rotate(45deg);}
-  to{transform:translateY(-120%) rotate(45deg);}
-}
-/* texto */
-.text{
-  position:absolute;
-  top:90px;
-  left:20px;
-  right:20px;
-  font-size:20px;
-}
-/* contador */
-.timer{
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  right:20px;
-  font-size:18px;
-  font-weight:bold;
-}
-/* árbol */
-.tree{
-  position:absolute;
-  bottom:80px;
-  right:20px;
-  width:220px;
-  height:220px;
-}
-.trunk{
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:14px;
-  height:60px;
-  background:#8b5a2b;
-}
-.heart-tree{
-  position:absolute;
-  width:100%;
-  height:100%;
-  clip-path:path("M110 200 C 20 140, 10 70, 60 40 C 90 20,110 50,110 50 C110 50,130 20,160 40 C210 70,200 140,110 200 Z");
-}
-.flower{
-  position:absolute;
-  width:10px;
-  height:10px;
-  background:yellow;
-  border-radius:50%;
-  box-shadow:0 0 6px gold;
-}
-/* flores cayendo */
-.fall{
-  position:absolute;
-  width:8px;
-  height:8px;
-  background:yellow;
-  border-radius:50%;
-  animation:fall 6s linear infinite;
-}
-@keyframes fall{
-  from{transform:translateY(-10px);}
-  to{transform:translateY(700px);}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <title>Flores Amarillas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Te+Amor:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --card-bg: #f6eadd;
+    --font1: 'Montserrat', Arial, sans-serif;
+    --font2: 'Te Amor', cursive, sans-serif;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 80%, #ffbae2 0%, #a80051 100%);
+    overflow: hidden;
+    font-family: var(--font1);
+  }
+  /* Fondo corazones */
+  .bg-hearts {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Tarjeta */
+  .card {
+    position: relative;
+    z-index: 1;
+    margin:40px auto 0 auto;
+    width: 93vw;
+    max-width: 700px;
+    height: 380px;
+    background: var(--card-bg);
+    border-radius: 40px;
+    box-shadow: 0 10px 44px -10px #5c1152af;
+    overflow: hidden;
+    padding: 0;
+  }
+  .card-inner {
+    height: 100%;
+    border-radius: inherit;
+    padding: 30px 25px 25px 32px;
+  }
+  .developer {
+    position: absolute;
+    right: 38px;
+    top: 15px;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    color: #c248b0;
+    font-weight: bold;
+    opacity: 0.85;
+    z-index: 2;
+    text-shadow: 0 1px 4px #fff5;
+  }
+  .mensaje {
+    color: #393939;
+    font-size: 1.15rem;
+    margin-bottom: 28px;
+    margin-top: 0;
+    min-height: 70px;
+    white-space: pre-line;
+    line-height: 1.32;
+  }
+  /* Árbol corazón */
+  .tree-box {
+    position: absolute;
+    top: 54px;
+    right: 24px;
+    width: 280px;
+    height: 230px;
+    pointer-events: none;
+  }
+  .tree-trunk {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    width: 28px;
+    height: 74px;
+    background: #9B6432;
+    border-radius: 17px 19px 12px 13px / 40px 38px 19px 21px;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .Flores_Amarillas {
+    position: absolute;
+    left: 50%;
+    top: 32px;
+    width: 93%;
+    aspect-ratio: 1/1;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  /* Flor tipo girasol */
+  .flor {
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 45%, #f8c020 85%, #e7d311 94%);
+    box-shadow: 0 2px 8px #e1c93850;
+    z-index: 2;
+    border:3px solid #f4e344;
+  }
+  .flor::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #7e5b23;
+    border-radius: 50%;
+    margin: 6.5px auto 0 auto;
+  }
+  /* Counter & barra */
+  .counter-box {
+    font-size: 1.1rem;
+    margin-top: 1.9em;
+    color: #1c1c1d;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    text-align: left;
+    padding-left: 8px;
+    padding-right: 6px;
+  }
+  .contador-tiempo {
+    font-weight: bold;
+    font-size: 1.21em;
+    letter-spacing: 0.03em;
+  }
+  .bar-bottom {
+    position: absolute;
+    left:0;right:0;bottom:2px;
+    height: 3px;
+    background: #2b2b2b;
+    opacity: 0.14;
+    z-index: 11;
+    border-radius: 1px;
+  }
+  /* Responsive */
+  @media (max-width: 600px){
+    .card { height: 430px; }
+    .tree-box { width: 183px; height: 154px; top:62px; right:7vw; }
+    .developer { font-size: 1.1rem; right:18px; }
+    .Flores_Amarillas { width:88%; }
+  }
+  </style>
 </head>
 <body>
-<div class="container" id="box">
-  <div class="name">💖 Ailyn Franco 💖</div>
-  <div class="text">
-    🌼 Flores Amarillas para el amor de mi vida:<br><br>
-    Si pudiera darte todo lo que siento,
-    te daría el tiempo entero de mi vida...
+  <canvas class="bg-hearts" id="corazonFondo"></canvas>
+  <div class="card">
+    <span class="developer">ALEX DEV</span>
+    <div class="card-inner">
+      <div class="mensaje">
+        Flores Amarillas para el<br>amor de mi vida:<br><br>
+        Si pudiera
+      </div>
+      <div class="tree-box">
+        <div class="tree-trunk"></div>
+        <div class="Flores_Amarillas" id="flores"></div>
+      </div>
+      <div class="counter-box">
+        Mi amor por ti comenzó hace... <br>
+        <span class="contador-tiempo" id="contador"></span>
+      </div>
+      <div class="bar-bottom"></div>
+    </div>
   </div>
-  <div class="timer">
-    Mi amor por ti comenzó hace:<br>
-    <span id="contador"></span>
-  </div>
-  <div class="tree">
-    <div class="heart-tree" id="flowers"></div>
-    <div class="trunk"></div>
-  </div>
-</div>
-<script>
-// corazones
-for(let i=0;i<20;i++){  
-  let h=document.createElement("div");
-  h.className="heart";
-  h.style.left=Math.random()*100+"%";
-  h.style.animationDuration=(5+Math.random()*5)+"s";
-  document.getElementById("box").appendChild(h);
-}
-// flores árbol
-const container=document.getElementById("flowers");
-for(let i=0;i<120;i++){  
-  let f=document.createElement("div");
-  f.className="flower";
-  f.style.left=Math.random()*100+"%";
-  f.style.top=Math.random()*100+"%";
-  container.appendChild(f);
-}
-// flores cayendo
-for(let i=0;i<25;i++){  
-  let f=document.createElement("div");
-  f.className="fall";
-  f.style.left=Math.random()*100+"%";
-  f.style.animationDuration=(4+Math.random()*4)+"s";
-  document.getElementById("box").appendChild(f);
-}
-// contador
-const startDate=new Date("2023-10-23T00:00:00");
-function actualizar(){
-  const now=new Date();
-  let diff=now-startDate;
-  let s=Math.floor(diff/1000);
-  let d=Math.floor(s/86400);
-  s%=86400;
-  let h=Math.floor(s/3600);
-  s%=3600;
-  let m=Math.floor(s/60);
-  s%=60;
-  document.getElementById("contador").innerHTML=
-    `${d} días ${h} horas ${m} minutos ${s} segundos`;
-}
-setInterval(actualizar,1000);
-actualizar();
-</script>
-<!-- 🎵 AGREGA AQUÍ TU CANCIÓN -->
-<!-- Descarga "Extrañarte - Jay Wheeler" y ponla como musica.mp3 -->
-<audio autoplay loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+  <script>
+  // FONDO corazones animados
+  const cnv=document.getElementById("corazonFondo"),ctx=cnv.getContext("2d");
+  function resizeBg(){cnv.width=window.innerWidth;cnv.height=window.innerHeight;}
+  window.addEventListener("resize",resizeBg);resizeBg();
+  // Dibuja un corazón
+  function heartPath(ctx,x,y,size){
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.beginPath();
+    ctx.moveTo(0, size / 4);
+    ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, size / 4);
+    ctx.bezierCurveTo(-size / 2, size / 2, 0, size * .7, 0, size);
+    ctx.bezierCurveTo(0, size * .7, size / 2, size / 2, size / 2, size / 4);
+    ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, size / 4);
+    ctx.closePath();
+    ctx.restore();
+  }
+  let hearts=[];
+  for(let i=0;i<32;i++)hearts.push({
+    x:Math.random()*cnv.width,
+    y:Math.random()*cnv.height,
+    s:18+Math.random()*38,
+    v:0.2+0.22*Math.random(),
+    o:0.18+Math.random()*0.32,
+    dx:Math.random()*2*Math.PI
+  });
+  function drawHearts(){
+    ctx.clearRect(0,0,cnv.width,cnv.height);
+    for(const h of hearts){
+      h.y+=(h.v);
+      h.x+=(Math.sin(h.dy=h.dy||0)+Math.cos(h.dx+=0.009))/2;
+      if(h.y>cnv.height+40) h.y=-40;
+      ctx.globalAlpha=h.o;
+      ctx.save();
+      ctx.translate(h.x,h.y);
+      ctx.rotate(Math.sin(h.dx)*0.4);
+      ctx.scale(1.15,1);
+      ctx.beginPath();
+      heartPath(ctx, 0, 0, h.s);
+      ctx.fillStyle="#fff";
+      ctx.shadowColor="#ec83b4";
+      ctx.shadowBlur=12;
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.globalAlpha=1;
+    requestAnimationFrame(drawHearts);
+  }
+  drawHearts();
+
+  // Árbol de corazón con flores
+  // Trayectoria SVG para forma de corazón
+  function heartTreePath(cx,cy,w,h){ // centro, width, height
+    const t=Math.PI,
+      x0=cx,y0=cy+h*0.27,
+      x1=cx-w*0.5,y1=cy-h*0.11,
+      x2=cx,y2=cy-h*0.41,
+      x3=cx+w*0.5,y3=cy-h*0.11;
+    return function(tval){
+      // tval in [0, 1]
+      const x = Math.pow(1-tval,2)*x1+2*(1-tval)*tval*x2+Math.pow(tval,2)*x3;
+      const y = Math.pow(1-tval,2)*y1+2*(1-tval)*tval*y2+Math.pow(tval,2)*y3;
+      return [x, y];
+    }
+  }
+  // Semillas "flores" en la forma de corazón
+  const box=document.getElementById("flores");
+  // Coordinadas base del corazón
+  const W=box.offsetWidth,H=box.offsetHeight,CX=W/2,CY=H/2+8;
+  let petalos=85;
+  for(let i=0;i<petalos;i++){
+    // Distribución polar + ruido para efecto "ramo"
+    const t=(i+0.08*Math.random())/(petalos-1);
+    const ang=Math.PI*2*t + (Math.sin(i)*0.15);
+    const rad=76*Math.pow(Math.sin(t*Math.PI),2.2)+50+Math.random()*9;
+    const x=CX+Math.cos(ang-Math.PI/2)*rad+(Math.random()-0.5)*19;
+    const y=CY+Math.sin(ang-Math.PI/2)*rad*0.85+(Math.random()-0.5)*22;
+    const f=document.createElement("div");
+    f.className="flor";
+    f.style.left=`${x}px`;
+    f.style.top=`${y}px`;
+    // animación sutil a varias flores
+    if(i%6===0){
+      f.animate([
+        {transform:'scale(1)'},
+        {transform:'scale(1.2)'}
+      ],{
+        duration:1680+Math.random()*1100,
+        direction:"alternate",
+        iterations: Infinity
+      });
+    }
+    box.appendChild(f);
+  }
+
+  // Flores cayendo (animación simple)
+  for(let i=0;i<8;i++){ 
+    let f=document.createElement("div");
+    f.className="flor";
+    f.style.left=(CX-65+Math.random()*130)+'px';
+    f.style.top='-30px';
+    f.style.opacity=0.7+Math.random()*0.2;
+    f.style.transition="top 7.6s linear";
+    setTimeout(()=>{ 
+      f.style.top=(H-20+Math.random()*25)+'px';
+    },350+Math.random()*800);
+    setTimeout(()=>box.removeChild(f),8000);
+    box.appendChild(f);
+  }
+
+  // Contador de tiempo
+  const startDate=new Date("2023-03-26T00:00:00");
+  function actualizar(){
+    let now=new Date(),diff=now-startDate,s=Math.floor(diff/1000);
+    let d=Math.floor(s/86400); s%=86400;
+    let h=Math.floor(s/3600);  s%=3600;
+    let m=Math.floor(s/60);    s%=60;
+    let texto=`${d} días ${h} horas ${m} minutos ${s} segundos`;
+    document.getElementById("contador").textContent=texto;
+  }
+  setInterval(actualizar,1000);actualizar();
+  </script>
 </body>
 </html>
